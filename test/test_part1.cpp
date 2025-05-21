@@ -1,18 +1,20 @@
 #include <gtest/gtest.h>
 #include "text_analysis.h"
 
+using namespace std;
+
 TEST(BuscarPatronTest, PatronEncontrado) {
-    std::string texto = "Este es un texto de prueba con un patrón.";
-    std::string patron = "texto";
+    string texto = "Hola mundo cruel";
+    string patron = "mundo";
     auto resultado = buscarPatronConPosicion(texto, patron);
     EXPECT_TRUE(resultado.first);
-    EXPECT_EQ(resultado.second, 12); // "texto" empieza en la posición 12 (1-based)
+    EXPECT_EQ(resultado.second, 5); // posición donde empieza "mundo"
 }
 
 TEST(BuscarPatronTest, PatronNoEncontrado) {
-    std::string texto = "Contenido de prueba sin coincidencias.";
-    std::string patron = "inexistente";
+    string texto = "Hola mundo cruel";
+    string patron = "gato";
     auto resultado = buscarPatronConPosicion(texto, patron);
     EXPECT_FALSE(resultado.first);
-    EXPECT_EQ(resultado.second, 0);
+    EXPECT_EQ(resultado.second, string::npos);
 }
