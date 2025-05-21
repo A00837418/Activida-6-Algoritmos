@@ -4,6 +4,7 @@
 #include <sstream>
 #include <algorithm>
 #include <vector>
+
 using namespace std;
 
 string leer_archivo(const string& ruta) {
