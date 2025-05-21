@@ -2,6 +2,7 @@
 #include <fstream>
 #include <sstream>
 #include <algorithm>
+#include <vector>
 using namespace std;
 
 string leerArchivo(const string& ruta) {
