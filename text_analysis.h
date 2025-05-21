@@ -7,7 +7,7 @@
 
 using namespace std;
 
-string leerArchivo(const string& ruta);
+string leer_archivo(const string& ruta);
 
 pair<bool, size_t> buscar_patron_con_posicion(const string& texto, const string& patron);
 
