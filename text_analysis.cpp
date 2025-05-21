@@ -1,87 +1,83 @@
 #include "text_analysis.h"
 #include <fstream>
-#include <iostream>
-#include <string>
-#include <vector>
+#include <sstream>
 #include <algorithm>
-
 using namespace std;
 
 string leerArchivo(const string& ruta) {
     ifstream archivo(ruta);
-    if (!archivo.is_open()) {
-        cerr << "No se pudo abrir el archivo: " << ruta << endl;
-        return "";
-    }
-    string contenido((istreambuf_iterator<char>(archivo)), istreambuf_iterator<char>());
-    contenido.erase(remove(contenido.begin(), contenido.end(), '\r'), contenido.end());
-    return contenido;
+    stringstream buffer;
+    buffer << archivo.rdbuf();
+    return buffer.str();
 }
 
 pair<bool, size_t> buscarPatronConPosicion(const string& texto, const string& patron) {
     size_t pos = texto.find(patron);
-    if (pos == string::npos) return {false, 0};
-    return {true, pos + 1}; // 1-based
+    return {pos != string::npos, pos};
 }
 
 pair<pair<size_t, size_t>, string> encontrarPalindromoReal(const string& s) {
-    size_t n = s.length();
-    if (n == 0) return {{0, 0}, ""};
+    size_t n = s.size();
+    size_t start = 0, maxLen = 0;
 
-    size_t max_len = 1;
-    size_t start = 0;
-
-    for (size_t i = 0; i < n; i++) {
+    for (size_t i = 0; i < n; ++i) {
         size_t l = i, r = i;
-        while (l <= r && r < n && s[l] == s[r]) {
-            if (r - l + 1 > max_len) {
-                max_len = r - l + 1;
+        while (l < n && r < n && l <= r && s[l] == s[r]) {
+            if (r - l + 1 > maxLen) {
                 start = l;
+                maxLen = r - l + 1;
             }
             if (l == 0) break;
-            l--;
-            r++;
+            --l;
+            ++r;
         }
 
-        l = i;
-        r = i + 1;
-        while (l <= r && r < n && s[l] == s[r]) {
-            if (r - l + 1 > max_len) {
-                max_len = r - l + 1;
+        l = i, r = i + 1;
+        while (l < n && r < n && l <= r && s[l] == s[r]) {
+            if (r - l + 1 > maxLen) {
                 start = l;
+                maxLen = r - l + 1;
             }
             if (l == 0) break;
-            l--;
-            r++;
+            --l;
+            ++r;
         }
     }
 
-    string palindromo = s.substr(start, max_len);
-    size_t pos_final = start + max_len;
-    return {{start + 1, pos_final}, palindromo};
+    string candidato = s.substr(start, maxLen);
+
+    // Eliminar espacios al principio y final del palíndromo
+    size_t realStartOffset = candidato.find_first_not_of(' ');
+    size_t realEndOffset = candidato.find_last_not_of(' ');
+
+    if (realStartOffset == string::npos || realEndOffset == string::npos) {
+        return {{0, 0}, ""};
+    }
+
+    size_t adjustedStart = start + realStartOffset;
+    size_t adjustedEnd = start + realEndOffset;
+    string palindromoLimpio = s.substr(adjustedStart, adjustedEnd - adjustedStart + 1);
+
+    return {{adjustedStart, adjustedEnd}, palindromoLimpio};
 }
 
 pair<pair<size_t, size_t>, string> encontrarSubstringComunReal(const string& s1, const string& s2) {
-    size_t m = s1.length();
-    size_t n = s2.length();
+    size_t m = s1.size(), n = s2.size();
+    size_t maxLen = 0, endIndexS1 = 0;
     vector<vector<size_t>> dp(m + 1, vector<size_t>(n + 1, 0));
-    size_t max_len = 0;
-    size_t end = 0;
 
-    for (size_t i = 1; i <= m; i++) {
-        for (size_t j = 1; j <= n; j++) {
-            if (s1[i-1] == s2[j-1]) {
-                dp[i][j] = dp[i-1][j-1] + 1;
-                if (dp[i][j] > max_len) {
-                    max_len = dp[i][j];
-                    end = i;
+    for (size_t i = 1; i <= m; ++i) {
+        for (size_t j = 1; j <= n; ++j) {
+            if (s1[i - 1] == s2[j - 1]) {
+                dp[i][j] = dp[i - 1][j - 1] + 1;
+                if (dp[i][j] > maxLen) {
+                    maxLen = dp[i][j];
+                    endIndexS1 = i;
                 }
             }
         }
     }
 
-    if (max_len == 0) return {{0, 0}, ""};
-
-    string substring = s1.substr(end - max_len, max_len);
-    return {{end - max_len + 1, end}, substring};
+    string commonSubstring = s1.substr(endIndexS1 - maxLen, maxLen);
+    return {{endIndexS1 - maxLen, endIndexS1 - 1}, commonSubstring};
 }
