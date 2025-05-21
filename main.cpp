@@ -6,11 +6,11 @@
 using namespace std;
 
 int main() {
-    string t1 = leerArchivo("Textos/transmission1.txt");
-    string t2 = leerArchivo("Textos/transmission2.txt");
-    string m1 = leerArchivo("Textos/mcode1.txt");
-    string m2 = leerArchivo("Textos/mcode2.txt");
-    string m3 = leerArchivo("Textos/mcode3.txt");
+    string t1 = leer_archivo("Textos/transmission1.txt");
+    string t2 = leer_archivo("Textos/transmission2.txt");
+    string m1 = leer_archivo("Textos/mcode1.txt");
+    string m2 = leer_archivo("Textos/mcode2.txt");
+    string m3 = leer_archivo("Textos/mcode3.txt");
 
     cout << "Parte 1:" << endl;
 
