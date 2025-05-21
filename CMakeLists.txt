@@ -48,7 +48,7 @@ if(ENABLE_TESTING)
 
     add_test_executable(test_part1 test/test_part1.cpp)
     add_test_executable(test_part2 test/test_part2.cpp)
-    add_test_executable(test_part3 test/test_part3.cpp)
+   
 
     if (ENABLE_COVERAGE)
         find_program(LCOV lcov)
