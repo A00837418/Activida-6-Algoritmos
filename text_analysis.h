@@ -1,5 +1,4 @@
 #ifndef TEXT_ANALYSIS_H
-
 #define TEXT_ANALYSIS_H
 
 #include <string>
