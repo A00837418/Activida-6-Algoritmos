@@ -11,7 +11,7 @@ include_directories(${CMAKE_SOURCE_DIR}/include)
 
 # Fuente principal separado
 set(SOURCES
-    src/core.cpp
+    main.cpp
 )
 
 # Crear la biblioteca compartida para reutilizar en pruebas
