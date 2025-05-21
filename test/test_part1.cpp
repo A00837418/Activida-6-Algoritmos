@@ -6,7 +6,7 @@ using namespace std;
 TEST(BuscarPatronTest, PatronEncontrado) {
     string texto = "Hola mundo cruel";
     string patron = "mundo";
-    auto resultado = buscarPatronConPosicion(texto, patron);
+    auto resultado = buscar_patron_con_posicion(texto, patron);
     EXPECT_TRUE(resultado.first);
     EXPECT_EQ(resultado.second, 5); // posición donde empieza "mundo"
 }
@@ -14,7 +14,7 @@ TEST(BuscarPatronTest, PatronEncontrado) {
 TEST(BuscarPatronTest, PatronNoEncontrado) {
     string texto = "Hola mundo cruel";
     string patron = "gato";
-    auto resultado = buscarPatronConPosicion(texto, patron);
+    auto resultado = buscar_patron_con_posicion(texto, patron);
     EXPECT_FALSE(resultado.first);
     EXPECT_EQ(resultado.second, string::npos);
 }

@@ -14,35 +14,35 @@ int main() {
 
     cout << "Parte 1:" << endl;
 
-    auto [found1, pos1] = buscarPatronConPosicion(t1, m1);
+    auto [found1, pos1] = buscar_patron_con_posicion(t1, m1);
     cout << (found1 ? "true " + to_string(pos1) : "false") << endl;
 
-    auto [found2, pos2] = buscarPatronConPosicion(t1, m2);
+    auto [found2, pos2] = buscar_patron_con_posicion(t1, m2);
     cout << (found2 ? "true " + to_string(pos2) : "false") << endl;
 
-    auto [found3, pos3] = buscarPatronConPosicion(t1, m3);
+    auto [found3, pos3] = buscar_patron_con_posicion(t1, m3);
     cout << (found3 ? "true " + to_string(pos3) : "false") << endl;
 
-    auto [found4, pos4] = buscarPatronConPosicion(t2, m1);
+    auto [found4, pos4] = buscar_patron_con_posicion(t2, m1);
     cout << (found4 ? "true " + to_string(pos4) : "false") << endl;
 
-    auto [found5, pos5] = buscarPatronConPosicion(t2, m2);
+    auto [found5, pos5] = buscar_patron_con_posicion(t2, m2);
     cout << (found5 ? "true " + to_string(pos5) : "false") << endl;
 
-    auto [found6, pos6] = buscarPatronConPosicion(t2, m3);
+    auto [found6, pos6] = buscar_patron_con_posicion(t2, m3);
     cout << (found6 ? "true " + to_string(pos6) : "false") << endl;
 
     cout << "Parte 2:" << endl;
-    auto [pal1_pos, pal1_str] = encontrarPalindromoReal(t1);
+    auto [pal1_pos, pal1_str] = encontrar_palindromo_real(t1);
     replace(pal1_str.begin(), pal1_str.end(), '\n', ' ');
     cout << pal1_pos.first << " " << pal1_pos.second << " " << pal1_str << endl;
 
-    auto [pal2_pos, pal2_str] = encontrarPalindromoReal(t2);
+    auto [pal2_pos, pal2_str] = encontrar_palindromo_real(t2);
     replace(pal2_str.begin(), pal2_str.end(), '\n', ' ');
     cout << pal2_pos.first << " " << pal2_pos.second << " " << pal2_str << endl;
 
     cout << "Parte 3:" << endl;
-    auto [sub_pos, sub_str] = encontrarSubstringComunReal(t1, t2);
+    auto [sub_pos, sub_str] = encontrar_substring_comun_real(t1, t2);
     cout << sub_pos.first << " " << sub_pos.second << " " << sub_str << endl;
 
     return 0;

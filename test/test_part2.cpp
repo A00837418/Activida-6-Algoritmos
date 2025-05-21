@@ -5,7 +5,7 @@ using namespace std;
 
 TEST(PalindromoTest, DetectaPalindromoCentral) {
     string texto = "abc racecar def";
-    auto resultado = encontrarPalindromoReal(texto);
+    auto resultado = encontrar_palindromo_real(texto);
     auto pos = resultado.first;
     auto palindromo = resultado.second;
     EXPECT_EQ(pos.first, 4);  // "racecar" empieza en 4
@@ -15,7 +15,7 @@ TEST(PalindromoTest, DetectaPalindromoCentral) {
 
 TEST(PalindromoTest, PalindromoSimple) {
     string texto = " wow ";
-    auto resultado = encontrarPalindromoReal(texto);
+    auto resultado = encontrar_palindromo_real(texto);
     auto pos = resultado.first;
     auto palindromo = resultado.second;
     EXPECT_EQ(pos.first, 1);  // 'w'
