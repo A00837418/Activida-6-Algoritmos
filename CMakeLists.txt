@@ -14,7 +14,7 @@ include_directories(${CMAKE_SOURCE_DIR})
 # Archivos fuente principales
 set(SOURCES
         main.cpp
-        test_analysis.cpp
+        text_analysis.cpp
 )
 
 # Crear el ejecutable principal
