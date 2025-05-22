@@ -45,9 +45,8 @@ if(ENABLE_TESTING)
         add_test(NAME ${name} COMMAND ${name})
     endfunction()
 
-    add_test_executable(test_text_analysis.cpp test/test_text_analysis.cpp)
-
-   
+    # Cambiado el nombre del ejecutable para que no tenga extensión .cpp
+    add_test_executable(test_text_analysis test/test_text_analysis.cpp)
 
     if (ENABLE_COVERAGE)
         find_program(LCOV lcov)
@@ -63,5 +62,3 @@ if(ENABLE_TESTING)
         endif()
     endif()
 endif()
-
-
