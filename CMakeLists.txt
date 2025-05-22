@@ -10,7 +10,6 @@ include_directories(${CMAKE_SOURCE_DIR})
 
 set(SOURCES
     main.cpp
-    text_analysis.cpp
 )
 
 add_executable(main ${SOURCES})
@@ -46,8 +45,8 @@ if(ENABLE_TESTING)
         add_test(NAME ${name} COMMAND ${name})
     endfunction()
 
-    add_test_executable(test_part1 test/test_part1.cpp)
-    add_test_executable(test_part2 test/test_part2.cpp)
+    add_test_executable(test_text_analysis.cpp test/test_text_analysis.cpp)
+
    
 
     if (ENABLE_COVERAGE)

@@ -1,48 +1,64 @@
-#include <iostream>
-#include <string>
-#include <algorithm>
+/*
+ *  E1. Actividad Integradora 1
+ * 
+ *  Descripción: Programa que lee archivos de texto y código malicioso, detecta patrones,
+ *              encuentra palíndromos y substrings comunes.
+ *  Programadores : 
+ *   
+ *   Francisco Eduardo Pérez Berlanga - A00837418
+ *
+ *   Paulo de Jesus Ibarra Carballo a00837745 
+ *
+ *   Claudio Patricio Cantú Alanís a00835868
+ *  
+ *    Pedro Alejandro Rodriguez Gonzalez a00837473
+ *
+ *   Diego José Roca Rodríguez a00836390
+ *
+ *  Fecha: 5 de abril de 2025
+ */
+
+
 #include "text_analysis.h"
 
-using namespace std;
-
 int main() {
-    string t1 = leerarchivo("Textos/transmission1.txt");
-    string t2 = leerarchivo("Textos/transmission2.txt");
-    string m1 = leerarchivo("Textos/mcode1.txt");
-    string m2 = leerarchivo("Textos/mcode2.txt");
-    string m3 = leerarchivo("Textos/mcode3.txt");
+    string t1 = leerArchivo("Textos/transmission1.txt");
+    string t2 = leerArchivo("Textos/transmission2.txt");
+    string m1 = leerArchivo("Textos/mcode1.txt");
+    string m2 = leerArchivo("Textos/mcode2.txt");
+    string m3 = leerArchivo("Textos/mcode3.txt");
 
     cout << "Parte 1:" << endl;
-
-    auto [found1, pos1] = buscarpatronconposicion(t1, m1);
+    
+    auto [found1, pos1] = buscarPatronConPosicion(t1, m1);
     cout << (found1 ? "true " + to_string(pos1) : "false") << endl;
 
-    auto [found2, pos2] = buscarpatronconposicion(t1, m2);
+    auto [found2, pos2] = buscarPatronConPosicion(t1, m2);
     cout << (found2 ? "true " + to_string(pos2) : "false") << endl;
 
-    auto [found3, pos3] = buscarpatronconposicion(t1, m3);
+    auto [found3, pos3] = buscarPatronConPosicion(t1, m3);
     cout << (found3 ? "true " + to_string(pos3) : "false") << endl;
 
-    auto [found4, pos4] = buscarpatronconposicion(t2, m1);
+    auto [found4, pos4] = buscarPatronConPosicion(t2, m1);
     cout << (found4 ? "true " + to_string(pos4) : "false") << endl;
 
-    auto [found5, pos5] = buscarpatronconposicion(t2, m2);
+    auto [found5, pos5] = buscarPatronConPosicion(t2, m2);
     cout << (found5 ? "true " + to_string(pos5) : "false") << endl;
 
-    auto [found6, pos6] = buscarpatronconposicion(t2, m3);
+    auto [found6, pos6] = buscarPatronConPosicion(t2, m3);
     cout << (found6 ? "true " + to_string(pos6) : "false") << endl;
 
     cout << "Parte 2:" << endl;
-    auto [pal1_pos, pal1_str] = encontrarpalindromo_real(t1);
+    auto [pal1_pos, pal1_str] = encontrarPalindromoReal(t1);
     replace(pal1_str.begin(), pal1_str.end(), '\n', ' ');
     cout << pal1_pos.first << " " << pal1_pos.second << " " << pal1_str << endl;
 
-    auto [pal2_pos, pal2_str] = encontrarpalindromo_real(t2);
+    auto [pal2_pos, pal2_str] = encontrarPalindromoReal(t2);
     replace(pal2_str.begin(), pal2_str.end(), '\n', ' ');
     cout << pal2_pos.first << " " << pal2_pos.second << " " << pal2_str << endl;
 
     cout << "Parte 3:" << endl;
-    auto [sub_pos, sub_str] = encontrarsubstringcomunreal(t1, t2);
+    auto [sub_pos, sub_str] = encontrarSubstringComunReal(t1, t2);
     cout << sub_pos.first << " " << sub_pos.second << " " << sub_str << endl;
 
     return 0;
