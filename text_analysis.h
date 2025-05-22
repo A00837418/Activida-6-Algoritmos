@@ -72,19 +72,16 @@ pair<bool, size_t> buscar_patron_con_posicion(const string& texto, const string&
  * @param start Índice inicial del palíndromo.
  */
 void expandir_desde_centro(const string& s, size_t left, size_t right, size_t& max_len, size_t& start) {
-    size_t n = s.length();
-    while (left < n && right < n && s[left] == s[right]) {
-        size_t longitud_actual = right - left + 1;
-        if (longitud_actual > max_len) {
-            max_len = longitud_actual;
-            start = left;
-        }
-        if (left == 0) {
-            break;
-        }
-        left--;
-        right++;
+    while (left >= 0 && right < n && s[left] == s[right]) {
+    size_t longitud_actual = right - left + 1;
+    if (longitud_actual > max_len) {
+        max_len = longitud_actual;
+        start = left;
     }
+    if (left == 0) break;  // Evita underflow (left es size_t)
+    left--;
+    right++;
+}
 }
 
 /**
