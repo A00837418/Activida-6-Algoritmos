@@ -7,3 +7,37 @@ TEST(TextAnalysisTest, SubstringComun) {
     EXPECT_EQ(resultado.second, "adora");
     EXPECT_EQ(resultado.first.second - resultado.first.first + 1, resultado.second.length());
 }
+
+TEST(TextAnalysisTest, SubcadenaComunInexistente) {
+    std::string s1 = "abc";
+    std::string s2 = "xyz";
+
+    auto resultado = encontrar_substring_comun_real(s1, s2);
+
+    EXPECT_EQ(resultado.first.first, 0);
+    EXPECT_EQ(resultado.first.second, 0);
+    EXPECT_EQ(resultado.second, "");
+}
+
+TEST(TextAnalysisTest, SubcadenaComunExistente) {
+    std::string s1 = "abcdef";
+    std::string s2 = "zabcy";
+
+    auto resultado = encontrar_substring_comun_real(s1, s2);
+
+    EXPECT_EQ(resultado.first.first, 1);   // 'abc' empieza en pos 1 de s1
+    EXPECT_EQ(resultado.first.second, 3);
+    EXPECT_EQ(resultado.second, "abc");
+}
+
+TEST(TextAnalysisTest, SubcadenaComunCadenasVacias) {
+    std::string s1 = "";
+    std::string s2 = "";
+
+    auto resultado = encontrar_substring_comun_real(s1, s2);
+
+    EXPECT_EQ(resultado.first.first, 0);
+    EXPECT_EQ(resultado.first.second, 0);
+    EXPECT_EQ(resultado.second, "");
+}
+

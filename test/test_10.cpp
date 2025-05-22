@@ -18,3 +18,12 @@ TEST(TextAnalysisTest, PalindromoEnMedio) {
     auto resultado = encontrar_palindromo_real("xyzracecar123");
     EXPECT_EQ(resultado.second, "racecar");
 }
+
+TEST(TextAnalysisTest, PalindromoCadenaVacia) {
+    std::string vacio = "";
+    auto resultado = encontrar_palindromo_real(vacio);
+
+    EXPECT_EQ(resultado.first.first, 0);
+    EXPECT_EQ(resultado.first.second, 0);
+    EXPECT_EQ(resultado.second, "");
+}
