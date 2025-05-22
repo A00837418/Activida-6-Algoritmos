@@ -63,6 +63,10 @@ if(ENABLE_TESTING)
     add_test_executable(test_5.cpp test/test_5.cpp)
     add_test_executable(test_6.cpp test/test_6.cpp)
     add_test_executable(test_7.cpp test/test_7.cpp)
+    add_test_executable(test_8.cpp test/test_8.cpp)
+    add_test_executable(test_9.cpp test/test_9.cpp)
+    add_test_executable(test_10.cpp test/test_10.cpp)
+   
 
     # Generar reportes de cobertura
     if (ENABLE_COVERAGE)
