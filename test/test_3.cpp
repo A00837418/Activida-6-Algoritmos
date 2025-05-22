@@ -2,7 +2,7 @@
 #include <gtest/gtest.h>
 #include "text_analysis.h"
 
-TEST(text_analysis_test, encuentra_substring_comun) {
+TEST(TextAnalysisTest, encuentra_substring_comun) {
     string s1 = "programacion";
     string s2 = "amacion";
     auto resultado = encontrar_substring_comun_real(s1, s2);

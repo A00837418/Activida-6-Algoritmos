@@ -3,7 +3,7 @@
 #include "text_analysis.h"  // Ajusta la ruta si está en otra carpeta
 
 // Caso de prueba para buscar_patron_con_posicion
-TEST(text_analysis_test, busca_patron) {
+TEST(TextAnalysisTest, busca_patron) {
     string texto = "Hola mundo desde C++";
     string patron = "mundo";
     auto resultado = buscar_patron_con_posicion(texto, patron);
@@ -12,13 +12,13 @@ TEST(text_analysis_test, busca_patron) {
 }
 
 // Test para buscar_patron_con_posicion
-TEST(text_analysis_test, buscar_patron_existente) {
+TEST(TextAnalysisTest, buscar_patron_existente) {
     auto resultado = buscar_patron_con_posicion("Hola mundo", "mundo");
     EXPECT_TRUE(resultado.first);
     EXPECT_EQ(resultado.second, 6);
 }
 
-TEST(text_analysis_test, buscar_patron_inexistente) {
+TEST(TextAnalysisTest, buscar_patron_inexistente) {
     auto resultado = buscar_patron_con_posicion("Hola mundo", "adios");
     EXPECT_FALSE(resultado.first);
     EXPECT_EQ(resultado.second, 0);
