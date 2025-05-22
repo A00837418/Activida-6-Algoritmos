@@ -26,6 +26,8 @@
 #include <string>
 #include <algorithm>
 
+using namespace std;
+
 // Pruebas individuales de búsqueda de patrón
 void pruebas_busqueda_patron(const string& t1, const string& t2, const string& m1, const string& m2, const string& m3) {
     cout << "Parte 1:" << endl;
@@ -71,6 +73,11 @@ int main() {
     string m1 = leer_archivo("Textos/mcode1.txt");
     string m2 = leer_archivo("Textos/mcode2.txt");
     string m3 = leer_archivo("Textos/mcode3.txt");
+
+    if (t1.empty() || t2.empty() || m1.empty() || m2.empty() || m3.empty()) {
+        cerr << "Error al leer uno o más archivos." << endl;
+        return 1;
+    }
 
     pruebas_busqueda_patron(t1, t2, m1, m2, m3);
     pruebas_palindromos(t1, t2);
