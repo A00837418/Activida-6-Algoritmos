@@ -1,3 +1,4 @@
+
 /*
  * SonarQube, herramienta de gestión de calidad de software de código abierto.
  * Copyright (C) 2008-2013 SonarSource
@@ -17,7 +18,6 @@
  * junto con este programa; si no, escriba a la Free Software Foundation,
  * Inc., 51 Franklin Street, quinto piso, Boston, MA 02110-1301, EE. UU.
  */
-
 #ifndef TEXT_ANALYSIS_H
 #define TEXT_ANALYSIS_H
 
