@@ -2,12 +2,11 @@
 #include <gtest/gtest.h>
 #include "text_analysis.h" 
 
-
-TEST(text_analysis_test, substring_comun_al_final) {
-    string s1 = "matematicas";
-    string s2 = "fisica";
+TEST(text_analysis_test, substring_comun_en_medio) {
+    string s1 = "ferrocarril";
+    string s2 = "bicirrin";
     auto resultado = encontrar_substring_comun_real(s1, s2);
-    EXPECT_EQ(resultado.second, "ica");
-    EXPECT_EQ(resultado.first.first, 7);  // índice de 'i' en "ica"
-    EXPECT_EQ(resultado.first.second, 9); // índice de 'a' en "ica"
+    EXPECT_EQ(resultado.second, "rri");
+    EXPECT_EQ(resultado.first.first, 6);  // índice de 'r' en "rri"
+    EXPECT_EQ(resultado.first.second, 8); // índice de 'i' en "rri"
 }
