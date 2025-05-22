@@ -38,3 +38,39 @@ TEST(PalindromoTest, CadenaVacia) {
     EXPECT_EQ(resultado.first.second, 0); // Posición final
     EXPECT_EQ(resultado.second, "");      // Palíndromo encontrado
 }
+
+// 🔹 2. Cubre: Palíndromo impar ("racecar") → se ejecutan llamadas expandir_desde_centro(s, i, i, ...)
+TEST(PalindromoTest, PalindromoImpar) {
+    string entrada = "racecar";
+    auto resultado = encontrar_palindromo_real(entrada);
+    EXPECT_EQ(resultado.second, "racecar");
+    EXPECT_EQ(resultado.first.first, 1);
+    EXPECT_EQ(resultado.first.second, 7);
+}
+
+// 🔹 3. Cubre: Palíndromo par ("abccba") → se ejecutan expandir_desde_centro(s, i, i+1, ...)
+TEST(PalindromoTest, PalindromoPar) {
+    string entrada = "abccba";
+    auto resultado = encontrar_palindromo_real(entrada);
+    EXPECT_EQ(resultado.second, "abccba");
+    EXPECT_EQ(resultado.first.first, 1);
+    EXPECT_EQ(resultado.first.second, 6);
+}
+
+// 🔹 4. Cubre: palíndromo en el medio, verifica substr() y pos_final
+TEST(PalindromoTest, PalindromoEnMedio) {
+    string entrada = "abcxyzyxdef";
+    auto resultado = encontrar_palindromo_real(entrada);
+    EXPECT_EQ(resultado.second, "xyzyx");
+    EXPECT_EQ(resultado.first.first, 4);  // 1-based index
+    EXPECT_EQ(resultado.first.second, 8);
+}
+
+// 🔹 5. Palíndromo de un solo carácter
+TEST(PalindromoTest, UnCaracter) {
+    string entrada = "a";
+    auto resultado = encontrar_palindromo_real(entrada);
+    EXPECT_EQ(resultado.second, "a");
+    EXPECT_EQ(resultado.first.first, 1);
+    EXPECT_EQ(resultado.first.second, 1);
+}
