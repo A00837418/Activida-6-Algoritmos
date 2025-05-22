@@ -1,20 +1,17 @@
-
 #ifndef TEXT_ANALYSIS_H
 #define TEXT_ANALYSIS_H
 
 #include <string>
 #include <utility>
 
-// Lee el contenido de un archivo y lo retorna como una cadena
-std::string leer_archivo(const std::string& ruta);
+using namespace std;
 
-// Busca un patrón en un texto y retorna si fue encontrado y su posición
-std::pair<bool, std::size_t> buscar_patron_con_posicion(const std::string& texto, const std::string& patron);
+string leerarchivo(const string& ruta);
 
-// Encuentra el palíndromo más largo dentro del texto y devuelve su posición y contenido
-std::pair<std::pair<std::size_t, std::size_t>, std::string> encontrar_palindromo_real(const std::string& s);
+pair<bool, size_t> buscarpatronconposicion(const string& texto, const string& patron);
 
-// Encuentra la subcadena común más larga entre dos textos y devuelve su posición y contenido
-std::pair<std::pair<std::size_t, std::size_t>, std::string> encontrar_substring_comun_real(const std::string& s1, const std::string& s2);
+pair<pair<size_t, size_t>, string> encontrarpalindromoreal(const string& s);
 
-#endif // TEXT_ANALYSIS_H
+pair<pair<size_t, size_t>, string> encontrarsubstringcomunreal(const string& s1, const string& s2);
+
+#endif 

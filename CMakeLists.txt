@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.22)
+cmake_minimum_required(VERSION 3.30)
 
 project(sonarqube_unit_test VERSION 1.0.0 LANGUAGES C CXX)
 
@@ -13,9 +13,9 @@ set(SOURCES
     text_analysis.cpp
 )
 
-add_executable(sonarqube_main ${SOURCES})
+add_executable(main ${SOURCES})
 
-option(ENABLE_TESTING "Enable Unit Testing build." ON)
+option(ENABLE_TESTING "Enable a Unit Testing build." ON)
 option(ENABLE_COVERAGE "Enable coverage reporting" ON)
 
 if (ENABLE_COVERAGE)
@@ -48,6 +48,7 @@ if(ENABLE_TESTING)
 
     add_test_executable(test_part1 test/test_part1.cpp)
     add_test_executable(test_part2 test/test_part2.cpp)
+   
 
     if (ENABLE_COVERAGE)
         find_program(LCOV lcov)
@@ -63,3 +64,5 @@ if(ENABLE_TESTING)
         endif()
     endif()
 endif()
+
+
