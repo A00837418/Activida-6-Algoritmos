@@ -10,7 +10,7 @@
 
 using namespace std;
 
-string leerArchivo(const string& ruta) {
+string leer_archivo(const string& ruta) {
     ifstream archivo(ruta);
     if (!archivo.is_open()) {
         cerr << "No se pudo abrir el archivo: " << ruta << endl;
@@ -21,13 +21,13 @@ string leerArchivo(const string& ruta) {
     return contenido;
 }
 
-pair<bool, size_t> buscarPatronConPosicion(const string& texto, const string& patron) {
+pair<bool, size_t> buscar_patron_con_posicion(const string& texto, const string& patron) {
     size_t pos = texto.find(patron);
     if (pos == string::npos) return {false, 0};
     return {true, pos + 1}; // 1-based
 }
 
-pair<pair<size_t, size_t>, string> encontrarPalindromoReal(const string& s) {
+pair<pair<size_t, size_t>, string> encontrar_palindromo_real(const string& s) {
     size_t n = s.length();
     if (n == 0) return {{0, 0}, ""};
 
@@ -64,7 +64,7 @@ pair<pair<size_t, size_t>, string> encontrarPalindromoReal(const string& s) {
     return {{start + 1, pos_final}, palindromo};
 }
 
-pair<pair<size_t, size_t>, string> encontrarSubstringComunReal(const string& s1, const string& s2) {
+pair<pair<size_t, size_t>, string> encontrar_substring_comun_real(const string& s1, const string& s2) {
     size_t m = s1.length();
     size_t n = s2.length();
     vector<vector<size_t>> dp(m + 1, vector<size_t>(n + 1, 0));
