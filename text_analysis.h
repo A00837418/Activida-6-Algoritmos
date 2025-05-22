@@ -31,6 +31,9 @@
 
 using namespace std;
 
+/// Lee el contenido de un archivo de texto.
+/// param ruta Ruta del archivo a leer.
+/// return Devuelve todo el contenido del archivo como una cadena de texto. Si no se puede abrir, devuelve una cadena vacía.
 string leer_archivo(const string& ruta) {
     ifstream archivo(ruta);
     if (!archivo.is_open()) {
@@ -38,16 +41,25 @@ string leer_archivo(const string& ruta) {
         return "";
     }
     string contenido((istreambuf_iterator<char>(archivo)), istreambuf_iterator<char>());
-    contenido.erase(remove(contenido.begin(), contenido.end(), '\r'), contenido.end());
+    contenido.erase(remove(contenido.begin(), contenido.end(), '\r'), contenido.end()); // Elimina retornos de carro (Windows)
     return contenido;
 }
 
+/// Busca un patrón dentro de un texto y devuelve si fue encontrado y su posición.
+/// param texto Texto en el que se va a buscar.
+/// param patron Patrón a buscar dentro del texto.
+/// return Un par: el primero es un booleano que indica si se encontró el patrón, el segundo es la posición (1-based).
 pair<bool, size_t> buscar_patron_con_posicion(const string& texto, const string& patron) {
     size_t pos = texto.find(patron);
     if (pos == string::npos) return {false, 0};
-    return {true, pos + 1}; // 1-based
+    return {true, pos + 1}; // Posición 1-based
 }
 
+/// Encuentra el palíndromo más largo dentro de una cadena de texto.
+/// param s Cadena en la que se buscará el palíndromo.
+/// return Un par: 
+///     - Primero: par de posiciones (1-based) del inicio y fin del palíndromo encontrado.
+///     - Segundo: el palíndromo encontrado como cadena.
 pair<pair<size_t, size_t>, string> encontrar_palindromo_real(const string& s) {
     size_t n = s.length();
     if (n == 0) return {{0, 0}, ""};
@@ -55,8 +67,9 @@ pair<pair<size_t, size_t>, string> encontrar_palindromo_real(const string& s) {
     size_t max_len = 1;
     size_t start = 0;
 
+    // Búsqueda de palíndromos centrados en cada carácter
     for (size_t i = 0; i < n; i++) {
-        size_t l = i, r = i;
+        size_t l = i, r = i; // Palíndromo impar
         while (l <= r && r < n && s[l] == s[r]) {
             if (r - l + 1 > max_len) {
                 max_len = r - l + 1;
@@ -68,7 +81,7 @@ pair<pair<size_t, size_t>, string> encontrar_palindromo_real(const string& s) {
         }
 
         l = i;
-        r = i + 1;
+        r = i + 1; // Palíndromo par
         while (l <= r && r < n && s[l] == s[r]) {
             if (r - l + 1 > max_len) {
                 max_len = r - l + 1;
@@ -85,6 +98,12 @@ pair<pair<size_t, size_t>, string> encontrar_palindromo_real(const string& s) {
     return {{start + 1, pos_final}, palindromo};
 }
 
+/// Encuentra el substring común más largo entre dos cadenas.
+/// param s1 Primera cadena.
+/// param s2 Segunda cadena.
+/// return Un par: 
+///     - Primero: par de posiciones (1-based) donde comienza y termina el substring común en s1.
+///     - Segundo: el substring común más largo encontrado.
 pair<pair<size_t, size_t>, string> encontrar_substring_comun_real(const string& s1, const string& s2) {
     size_t m = s1.length();
     size_t n = s2.length();
@@ -92,6 +111,7 @@ pair<pair<size_t, size_t>, string> encontrar_substring_comun_real(const string& 
     size_t max_len = 0;
     size_t end = 0;
 
+    // Programación dinámica para encontrar el substring común más largo
     for (size_t i = 1; i <= m; i++) {
         for (size_t j = 1; j <= n; j++) {
             if (s1[i-1] == s2[j-1]) {
