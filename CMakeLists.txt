@@ -56,10 +56,10 @@ if(ENABLE_TESTING)
     endfunction()
 
     # Archivos de pruebas
-    add_test_executable(test_1.cpp test/test_1.cpp)
-    add_test_executable(test_2.cpp test/test_2.cpp)
-    add_test_executable(test_3.cpp test/test_3.cpp)
-    add_test_executable(test_4.cpp test/test_4.cpp)
+    add_test_executable(test_1 test/test_1.cpp)
+    add_test_executable(test_2 test/test_2.cpp)
+    add_test_executable(test_3 test/test_3.cpp)
+    add_test_executable(test_4 test/test_4.cpp)
 
    
 
