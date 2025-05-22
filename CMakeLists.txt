@@ -56,6 +56,7 @@ if(ENABLE_TESTING)
 
     # Archivos de pruebas
     add_test_executable(test_text_analysis test/test_text_analysis.cpp)
+    add_test_executable(test_text_analysis2 test/test_text_analysis2.cpp)
 
     # Generar reportes de cobertura
     if (ENABLE_COVERAGE)
