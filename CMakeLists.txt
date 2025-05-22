@@ -56,7 +56,9 @@ if(ENABLE_TESTING)
     endfunction()
 
     # Archivos de pruebas
-    add_test_executable(test_text_analysis test/test_text_analysis.cpp)
+    add_test_executable(test_1.cpp test/test_1.cpp)
+    add_test_executable(test_2.cpp test/test_2.cpp)
+
 
     # Generar reportes de cobertura
     if (ENABLE_COVERAGE)
