@@ -1,4 +1,3 @@
-
 /*
  * SonarQube, herramienta de gestión de calidad de software de código abierto.
  * Copyright (C) 2008-2013 SonarSource

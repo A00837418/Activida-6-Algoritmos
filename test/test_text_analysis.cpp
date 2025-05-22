@@ -22,10 +22,9 @@
 #include "text_analysis.h"
 #include <gtest/gtest.h>
 
-TEST(TextAnalysisTest, PatronDetectado) {
-    string texto = "abcdefg";
-    string patron = "cde";
-    auto [encontrado, pos] = buscar_patron_con_posicion(texto, patron);
-    EXPECT_TRUE(encontrado);
-    EXPECT_EQ(pos, 3);
+
+TEST(TextAnalysisTest, EncuentraPalindromo) {
+    string texto = "anita lava la tina";
+    auto [pos, pal] = encontrar_palindromo_real(texto);
+    EXPECT_EQ(pal, "anita lava la tina");
 }
