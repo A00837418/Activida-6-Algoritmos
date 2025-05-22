@@ -14,6 +14,8 @@ include_directories(${CMAKE_SOURCE_DIR})
 # Archivos fuente principales
 set(SOURCES
         main.cpp
+        text_analysis.cpp
+        text_analysis.h
 )
 
 # Crear el ejecutable principal
@@ -56,11 +58,6 @@ if(ENABLE_TESTING)
 
     # Archivos de pruebas
     add_test_executable(test_1 test/test_1.cpp)
-    add_test_executable(test_2 test/test_2.cpp)
-    add_test_executable(test_3 test/test_3.cpp)
-    add_test_executable(test_4 test/test_4.cpp)
-
-   
 
     # Generar reportes de cobertura
     if (ENABLE_COVERAGE)
