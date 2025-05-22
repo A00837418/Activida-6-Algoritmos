@@ -1,49 +1,47 @@
 #include <iostream>
 #include <string>
 #include <algorithm>
+#include <stdexcept>
 #include "text_analysis.h"
 
-using namespace std;
-
 int main() {
-    string t1 = leer_archivo("Textos/transmission1.txt");
-    string t2 = leer_archivo("Textos/transmission2.txt");
-    string m1 = leer_archivo("Textos/mcode1.txt");
-    string m2 = leer_archivo("Textos/mcode2.txt");
-    string m3 = leer_archivo("Textos/mcode3.txt");
+    try {
+        std::string t1 = leer_archivo("Textos/transmission1.txt");
+        std::string t2 = leer_archivo("Textos/transmission2.txt");
+        std::string m1 = leer_archivo("Textos/mcode1.txt");
+        std::string m2 = leer_archivo("Textos/mcode2.txt");
+        std::string m3 = leer_archivo("Textos/mcode3.txt");
 
-    cout << "Parte 1:" << endl;
+        std::cout << "Parte 1:" << std::endl;
 
-    auto [found1, pos1] = buscar_patron_con_posicion(t1, m1);
-    cout << (found1 ? "true " + to_string(pos1) : "false") << endl;
+        std::pair<std::string, std::string> transmisiones[] = {
+            {t1, m1}, {t1, m2}, {t1, m3},
+            {t2, m1}, {t2, m2}, {t2, m3}
+        };
 
-    auto [found2, pos2] = buscar_patron_con_posicion(t1, m2);
-    cout << (found2 ? "true " + to_string(pos2) : "false") << endl;
+        for (const auto& [transmision, malware] : transmisiones) {
+            auto [found, pos] = buscar_patron_con_posicion(transmision, malware);
+            std::cout << (found ? "true " + std::to_string(pos) : "false") << std::endl;
+        }
 
-    auto [found3, pos3] = buscar_patron_con_posicion(t1, m3);
-    cout << (found3 ? "true " + to_string(pos3) : "false") << endl;
+        std::cout << "Parte 2:" << std::endl;
 
-    auto [found4, pos4] = buscar_patron_con_posicion(t2, m1);
-    cout << (found4 ? "true " + to_string(pos4) : "false") << endl;
+        auto [pal1_pos, pal1_str] = encontrar_palindromo_real(t1);
+        std::replace(pal1_str.begin(), pal1_str.end(), '\n', ' ');
+        std::cout << pal1_pos.first << " " << pal1_pos.second << " " << pal1_str << std::endl;
 
-    auto [found5, pos5] = buscar_patron_con_posicion(t2, m2);
-    cout << (found5 ? "true " + to_string(pos5) : "false") << endl;
+        auto [pal2_pos, pal2_str] = encontrar_palindromo_real(t2);
+        std::replace(pal2_str.begin(), pal2_str.end(), '\n', ' ');
+        std::cout << pal2_pos.first << " " << pal2_pos.second << " " << pal2_str << std::endl;
 
-    auto [found6, pos6] = buscar_patron_con_posicion(t2, m3);
-    cout << (found6 ? "true " + to_string(pos6) : "false") << endl;
+        std::cout << "Parte 3:" << std::endl;
+        auto [sub_pos, sub_str] = encontrar_substring_comun_real(t1, t2);
+        std::cout << sub_pos.first << " " << sub_pos.second << " " << sub_str << std::endl;
 
-    cout << "Parte 2:" << endl;
-    auto [pal1_pos, pal1_str] = encontrar_palindromo_real(t1);
-    replace(pal1_str.begin(), pal1_str.end(), '\n', ' ');
-    cout << pal1_pos.first << " " << pal1_pos.second << " " << pal1_str << endl;
+        return 0;
 
-    auto [pal2_pos, pal2_str] = encontrar_palindromo_real(t2);
-    replace(pal2_str.begin(), pal2_str.end(), '\n', ' ');
-    cout << pal2_pos.first << " " << pal2_pos.second << " " << pal2_str << endl;
-
-    cout << "Parte 3:" << endl;
-    auto [sub_pos, sub_str] = encontrar_substring_comun_real(t1, t2);
-    cout << sub_pos.first << " " << sub_pos.second << " " << sub_str << endl;
-
-    return 0;
+    } catch (const std::exception& e) {
+        std::cerr << "Error: " << e.what() << std::endl;
+        return 1;
+    }
 }
