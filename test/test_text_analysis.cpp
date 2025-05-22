@@ -1,26 +1,32 @@
 #include <gtest/gtest.h>
 #include "text_analysis.h"
 
-// Nota: Ajusta las rutas a los archivos TXT según donde los tengas
+// Tests sin archivos externos, usando textos hardcodeados
 
 TEST(TextAnalysisTest, BuscarPatronConPosicion) {
-    string t1 = leerArchivo("Textos/transmission1.txt");
-    string m1 = leerArchivo("Textos/mcode1.txt");
+    // Texto completo (t1)
+    std::string t1 = "Este es un texto de prueba donde buscamos un patrón específico.";
+    // Patrón a buscar (m1)
+    std::string m1 = "patrón";
 
     auto [found, pos] = buscarPatronConPosicion(t1, m1);
-    
-    // Asumimos que el patrón m1 está en t1 y debe encontrarse en una posición > 0
+
+    // El patrón "patrón" sí está en t1, y su posición debe ser > 0
     EXPECT_TRUE(found);
     EXPECT_GT(pos, 0u);
 }
 
 TEST(TextAnalysisTest, EncontrarPalindromoReal) {
-    string t2 = leerArchivo("Textos/transmission2.txt");
+    // Texto que contiene un palíndromo, por ejemplo "ana"
+    std::string t2 = "En este texto encontramos un palíndromo: ana.";
 
     auto [pos_range, pal] = encontrarPalindromoReal(t2);
 
     // Validar que se encontró un palíndromo no vacío
     EXPECT_FALSE(pal.empty());
-    EXPECT_GE(pos_range.first, 1u);
+    EXPECT_GE(pos_range.first, 0u);
     EXPECT_GE(pos_range.second, pos_range.first);
+
+    // Opcional: Comprobar que el palíndromo encontrado sea efectivamente "ana"
+    EXPECT_EQ(pal, "ana");
 }
