@@ -19,56 +19,23 @@
  * Inc., 51 Franklin Street, quinto piso, Boston, MA 02110-1301, EE. UU.
  */
 
-#ifndef ANALISIS_DE_TEXTO_H
-#define ANALISIS_DE_TEXTO_H
+#ifndef TEXT_ANALYSIS_H
+#define TEXT_ANALYSIS_H
 
-#include <iostream>
-#include <fstream>
 #include <string>
-#include <algorithm>
-#include <vector>
 #include <utility>
+#include <iostream>
 
 using namespace std;
 
-/**
- * @brief Lee el contenido de un archivo de texto.
- * @param ruta Ruta del archivo a leer.
- * @return Contenido completo del archivo como una cadena.
- */
 string leer_archivo(const string& ruta);
 
-/**
- * @brief Busca un patrón dentro de un texto.
- * @param texto Texto donde buscar.
- * @param patron Patrón a buscar.
- * @return Par que indica si fue encontrado y su posición (1-based).
- */
 pair<bool, size_t> buscar_patron_con_posicion(const string& texto, const string& patron);
 
-/**
- * @brief Expande un posible palíndromo desde el centro.
- * @param s Cadena original.
- * @param izquierda Índice izquierdo.
- * @param derecha Índice derecho.
- * @param longitud_maxima Longitud máxima actual.
- * @param inicio Índice inicial del palíndromo.
- */
-void expandir_desde_centro(const string& s, size_t izquierda, size_t derecha, size_t& longitud_maxima, size_t& inicio);
+void expandir_desde_centro(const string& s, size_t left, size_t right, size_t& max_len, size_t& start);
 
-/**
- * @brief Encuentra el palíndromo más largo dentro de una cadena de texto.
- * @param s Cadena a analizar.
- * @return Par con las posiciones (1-based) y el palíndromo encontrado.
- */
 pair<pair<size_t, size_t>, string> encontrar_palindromo_real(const string& s);
 
-/**
- * @brief Encuentra la subcadena común más larga entre dos cadenas.
- * @param s1 Primera cadena.
- * @param s2 Segunda cadena.
- * @return Par con las posiciones (basadas en 1) y la subcadena común más larga.
- */
-pair<pair<size_t, size_t>, string> encontrar_subcadena_comun_real(const string& s1, const string& s2);
+pair<pair<size_t, size_t>, string> encontrar_substring_comun_real(const string& s1, const string& s2);
 
-#endif // ANALISIS_DE_TEXTO_H
+#endif

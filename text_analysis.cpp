@@ -19,7 +19,13 @@
  * Inc., 51 Franklin Street, quinto piso, Boston, MA 02110-1301, EE. UU.
  */
 
- #include "text_analysis.h"
+#include "text_analysis.h"
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <algorithm>
+#include <vector>
+#include <utility>
 
 string leer_archivo(const string& ruta) {
     ifstream archivo(ruta);
@@ -40,60 +46,59 @@ pair<bool, size_t> buscar_patron_con_posicion(const string& texto, const string&
     return {true, pos + 1};
 }
 
-void expandir_desde_centro(const string& s, size_t izquierda, size_t derecha, size_t& longitud_maxima, size_t& inicio) {
+void expandir_desde_centro(const string& s, size_t left, size_t right, size_t& max_len, size_t& start) {
     size_t n = s.length();
-    while (izquierda < n && derecha < n && s[izquierda] == s[derecha]) {
-        size_t longitud_actual = derecha - izquierda + 1;
-        if (longitud_actual > longitud_maxima) {
-            longitud_maxima = longitud_actual;
-            inicio = izquierda;
+    while (left < n && right < n && s[left] == s[right]) {
+        size_t longitud_actual = right - left + 1;
+        if (longitud_actual > max_len) {
+            max_len = longitud_actual;
+            start = left;
         }
-        if (izquierda == 0) {
-            break;
-        }
-        izquierda--;
-        derecha++;
+        if (left == 0) break;
+        left--;
+        right++;
     }
 }
 
 pair<pair<size_t, size_t>, string> encontrar_palindromo_real(const string& s) {
     size_t n = s.length();
-    if (n == 0) {
-        return {{0, 0}, ""};
-    }
-    size_t longitud_maxima = 1;
-    size_t inicio = 0;
+    if (n == 0) return {{0, 0}, ""};
+
+    size_t max_len = 1;
+    size_t start = 0;
+
     for (size_t i = 0; i < n; i++) {
-        expandir_desde_centro(s, i, i, longitud_maxima, inicio);       // Palíndromo impar
-        if (i + 1 < n) {
-            expandir_desde_centro(s, i, i + 1, longitud_maxima, inicio);   // Palíndromo par
-        }
+        expandir_desde_centro(s, i, i, max_len, start);
+        expandir_desde_centro(s, i, i + 1, max_len, start);
     }
-    string palindromo = s.substr(inicio, longitud_maxima);
-    size_t pos_final = inicio + longitud_maxima;
-    return {{inicio + 1, pos_final}, palindromo};
+
+    string palindromo = s.substr(start, max_len);
+    size_t pos_final = start + max_len;
+    return {{start + 1, pos_final}, palindromo};
 }
 
-pair<pair<size_t, size_t>, string> encontrar_subcadena_comun_real(const string& s1, const string& s2) {
+pair<pair<size_t, size_t>, string> encontrar_substring_comun_real(const string& s1, const string& s2) {
     size_t m = s1.length();
     size_t n = s2.length();
     vector<vector<size_t>> dp(m + 1, vector<size_t>(n + 1, 0));
-    size_t longitud_maxima = 0;
-    size_t fin = 0;
+
+    size_t max_len = 0;
+    size_t end = 0;
+
     for (size_t i = 1; i <= m; i++) {
         for (size_t j = 1; j <= n; j++) {
             if (s1[i - 1] == s2[j - 1]) {
                 dp[i][j] = dp[i - 1][j - 1] + 1;
-                if (dp[i][j] > longitud_maxima) {
-                    longitud_maxima = dp[i][j];
-                    fin = i;
+                if (dp[i][j] > max_len) {
+                    max_len = dp[i][j];
+                    end = i;
                 }
             }
         }
     }
-    if (longitud_maxima == 0) {
-        return {{0, 0}, ""};
-    }
-    string subcadena = s1.substr(fin - longitud_maxima, longitud_maxima);
-    return {{fin - longitud_maxima + 1, fin}, subcadena};
+
+    if (max_len == 0) return {{0, 0}, ""};
+
+    string substring = s1.substr(end - max_len, max_len);
+    return {{end - max_len + 1, end}, substring};
 }
