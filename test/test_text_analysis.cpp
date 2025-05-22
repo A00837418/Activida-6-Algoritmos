@@ -1,18 +1,31 @@
 
-#include <gtest/gtest.h>
+/*
+ *  E1. Actividad Integradora 1
+ * 
+ *  Descripción: Programa que lee archivos de texto y código malicioso, detecta patrones,
+ *              encuentra palíndromos y substrings comunes.
+ *  Programadores : 
+ *   
+ *   Francisco Eduardo Pérez Berlanga - A00837418
+ *
+ *   Paulo de Jesus Ibarra Carballo a00837745 
+ *
+ *   Claudio Patricio Cantú Alanís a00835868
+ *  
+ *    Pedro Alejandro Rodriguez Gonzalez a00837473
+ *
+ *   Diego José Roca Rodríguez a00836390
+ *
+ *  Fecha: 5 de abril de 2025
+ */
+
 #include "text_analysis.h"
+#include <gtest/gtest.h>
 
-
-TEST(TextAnalysisTest, buscar_patron_con_posicion) {
-    // Texto completo (t1)
-    std::string t1 = "Este es un texto de prueba donde buscamos un patrón específico.";
-    // Patrón a buscar (m1)
-    std::string m1 = "patrón";
-
-    auto [found, pos] = buscar_patron_con_posicion(t1, m1);
-
-    // El patrón "patrón" sí está en t1, y su posición debe ser > 0
-    EXPECT_TRUE(found);
-    EXPECT_GT(pos, 0u);
+TEST(TextAnalysisTest, PatronDetectado) {
+    string texto = "abcdefg";
+    string patron = "cde";
+    auto [encontrado, pos] = buscar_patron_con_posicion(texto, patron);
+    EXPECT_TRUE(encontrado);
+    EXPECT_EQ(pos, 3);
 }
-
