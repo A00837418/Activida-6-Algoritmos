@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include "../src/text_analysis.h"  // Ajusta la ruta si está en otra carpeta
+#include "text_analysis.h"  // Ajusta la ruta si está en otra carpeta
 
 // Caso de prueba para buscar_patron_con_posicion
 TEST(text_analysis_test, busca_patron) {
