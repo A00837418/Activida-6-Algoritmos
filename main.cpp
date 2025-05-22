@@ -19,11 +19,11 @@
  */
 
 
-#include "text_analysis.h"
-#include <iostream>
-#include <vector>
-#include <string>
-#include <algorithm>
+    #include "text_analysis.h"
+    #include <iostream>
+    #include <vector>
+    #include <string>
+    #include <algorithm>
 
 int main() {
     string t1 = leer_archivo("Textos/transmission1.txt");
