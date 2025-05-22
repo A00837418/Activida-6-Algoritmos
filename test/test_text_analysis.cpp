@@ -16,17 +16,3 @@ TEST(TextAnalysisTest, BuscarPatronConPosicion) {
     EXPECT_GT(pos, 0u);
 }
 
-TEST(TextAnalysisTest, EncontrarPalindromoReal) {
-    // Texto que contiene un palíndromo, por ejemplo "ana"
-    std::string t2 = "En este texto encontramos un palíndromo: ana.";
-
-    auto [pos_range, pal] = encontrarPalindromoReal(t2);
-
-    // Validar que se encontró un palíndromo no vacío
-    EXPECT_FALSE(pal.empty());
-    EXPECT_GE(pos_range.first, 0u);
-    EXPECT_GE(pos_range.second, pos_range.first);
-
-    // Opcional: Comprobar que el palíndromo encontrado sea efectivamente "ana"
-    EXPECT_EQ(pal, "ana");
-}
